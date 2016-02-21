@@ -11,6 +11,7 @@ func DegreesToRadians(degrees float64) float64 {
 	return degrees * math.Pi / 180
 }
 
+// http://www.movable-type.co.uk/scripts/latlong.html
 func Haversine(rad_lat1, rad_lng1, rad_lat2, rad_lng2 float64) float64 {
 	delta_lambda := rad_lng2 - rad_lng1
 	delta_phi := rad_lat2 - rad_lat1
