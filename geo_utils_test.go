@@ -27,6 +27,20 @@ func (s *GeoUtilsSuite) TestDegreesToRadiansPi(c *C) {
 	c.Assert(DegreesToRadians(180), Equals, math.Pi)
 }
 
+func TestRadLatToGrid(t *testing.T) {
+	assert.Equal(t, RadLatToGrid(0, 10), 5)
+	assert.Equal(t, RadLatToGrid(-0.1, 10), 4)
+	assert.Equal(t, RadLatToGrid(math.Pi/2-0.1, 10), 9)
+	assert.Equal(t, RadLatToGrid(-math.Pi/2+0.1, 10), 0)
+}
+
+func TestRadLngToGrid(t *testing.T) {
+	assert.Equal(t, RadLngToGrid(0, 10), 5)
+	assert.Equal(t, RadLngToGrid(-0.1, 10), 4)
+	assert.Equal(t, RadLngToGrid(math.Pi-0.1, 10), 9)
+	assert.Equal(t, RadLngToGrid(-math.Pi+0.1, 10), 0)
+}
+
 func (s *GeoUtilsSuite) TestClampGridLat(c *C) {
 	c.Assert(ClampGridLat(10, 11), Equals, 10)
 	c.Assert(ClampGridLat(11, 11), Equals, 10)

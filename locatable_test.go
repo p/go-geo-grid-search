@@ -22,9 +22,9 @@ func (s SampleLocatable) Lng() float64 {
 var _ Locatable = (*SampleLocatable)(nil)
 
 // Hook up gocheck into the "go test" runner.
-func Test(t *testing.T) { TestingT(t) }
+func TestLocatable(t *testing.T) { TestingT(t) }
 
-type MySuite struct {
+type LocatableSuite struct {
 }
 
-var _ = Suite(&MySuite{})
+var _ = Suite(&LocatableSuite{})
