@@ -1,10 +1,10 @@
 package ggsearch
 
 import (
-	"math"
+	"github.com/stretchr/testify/assert"
 	. "gopkg.in/check.v1"
+	"math"
 	"testing"
-	"github.com/stretchr/testify/assert" 
 )
 
 // Hook up gocheck into the "go test" runner.

@@ -68,7 +68,7 @@ func (s Searcher) Search(filter *LocatableFilter, lat, lng float64, limit int) [
 
 			for _, locatable_on_grid := range tile.locatables_on_grid {
 				if filter != nil && !(*filter)(locatable_on_grid.locatable) {
-						continue
+					continue
 				}
 
 				locatable_in_search := NewLocatableInSearch(&locatable_on_grid, rad_lat, rad_lng)

@@ -1,7 +1,7 @@
 package ggsearch
 
 import (
-	"github.com/stretchr/testify/assert" 
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -15,7 +15,7 @@ func TestNewLocatableMap(t *testing.T) {
 func TestLocatableMap_AddLocatableOnGrid(t *testing.T) {
 	locatable_map := NewLocatableMap(10, 20)
 	assert.Equal(t, locatable_map.locatable_map, make(map[int]*GridTile))
-	
+
 	locatable1 := SampleLocatable{"test1", 0, 0}
 	locatable_on_grid1 := NewLocatableOnGrid(
 		locatable1, 10, 20)
@@ -26,7 +26,7 @@ func TestLocatableMap_AddLocatableOnGrid(t *testing.T) {
 	locatable_map.AddLocatableOnGrid(&locatable_on_grid1)
 	assert.Equal(t, len(locatable_map.locatable_map), 1)
 	assert.Equal(t, locatable_map.locatable_map[105].locatables_on_grid[0], locatable_on_grid1)
-	
+
 	locatable2 := SampleLocatable{"test2", 0, -1}
 	locatable_on_grid2 := NewLocatableOnGrid(
 		locatable2, 10, 20)

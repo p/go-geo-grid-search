@@ -5,10 +5,10 @@ import (
 )
 
 type GridTile struct {
-	rad_lat         float64
-	rad_lng         float64
-	lat_tiles       int
-	lng_tiles       int
+	rad_lat            float64
+	rad_lng            float64
+	lat_tiles          int
+	lng_tiles          int
 	locatables_on_grid []LocatableOnGrid
 
 	width_miles  float64

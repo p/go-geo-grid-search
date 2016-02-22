@@ -1,9 +1,9 @@
 package ggsearch
 
 import (
-	"github.com/stretchr/testify/assert" 
-	"testing"
+	"github.com/stretchr/testify/assert"
 	"math"
+	"testing"
 )
 
 func TestNewTilePos(t *testing.T) {
@@ -21,14 +21,14 @@ func TestNewTilePos(t *testing.T) {
 func TestAddLocatableOnGrid(t *testing.T) {
 	grid_tile := NewGridTile(50*math.Pi/180, -70*math.Pi/180, 10, 20)
 	assert.Equal(t, grid_tile.locatables_on_grid, make([]LocatableOnGrid, 0))
-	
+
 	locatable1 := SampleLocatable{"test1", 50, -70}
 	locatable_on_grid1 := NewLocatableOnGrid(
 		locatable1, 10, 10)
 	grid_tile.AddLocatableOnGrid(&locatable_on_grid1)
 	assert.Equal(t, len(grid_tile.locatables_on_grid), 1)
 	assert.Equal(t, grid_tile.locatables_on_grid[0], locatable_on_grid1)
-	
+
 	locatable2 := SampleLocatable{"test2", 50, -71}
 	locatable_on_grid2 := NewLocatableOnGrid(
 		locatable2, 10, 10)

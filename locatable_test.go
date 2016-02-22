@@ -7,8 +7,8 @@ import (
 
 type SampleLocatable struct {
 	name string
-	lat float64
-	lng float64
+	lat  float64
+	lng  float64
 }
 
 func (s SampleLocatable) Lat() float64 {

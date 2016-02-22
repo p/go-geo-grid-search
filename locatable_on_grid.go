@@ -3,10 +3,10 @@ package ggsearch
 type LocatableOnGrid struct {
 	locatable Locatable
 
-	rad_lat           float64
-	rad_lng           float64
-	grid_lat          int
-	grid_lng          int
+	rad_lat  float64
+	rad_lng  float64
+	grid_lat int
+	grid_lng int
 }
 
 func NewLocatableOnGrid(locatable Locatable, lat_tiles int, lng_tiles int) LocatableOnGrid {
