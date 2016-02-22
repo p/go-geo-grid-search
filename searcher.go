@@ -71,7 +71,8 @@ func (s Searcher) Search(filter *LocatableFilter, lat, lng float64, limit int) [
 					continue
 				}
 
-				locatable_in_search := NewLocatableInSearch(&locatable_on_grid, rad_lat, rad_lng)
+				local_locatable_on_grid := locatable_on_grid
+				locatable_in_search := NewLocatableInSearch(&local_locatable_on_grid, rad_lat, rad_lng)
 				if locatable_in_search.distance_miles <= delta_miles {
 					current_list = append(current_list, locatable_in_search)
 				} else {
