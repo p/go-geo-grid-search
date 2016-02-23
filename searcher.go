@@ -88,7 +88,7 @@ func (s Searcher) Search(filter *LocatableFilter, lat, lng float64, limit int) [
 		reach++
 	}
 
-	sorted_list := LocatableInSearchByDistance{current_list}
+	sorted_list := locatableInSearchByDistance{current_list}
 	sort.Sort(sorted_list)
 	if limit > len(sorted_list.locatables_in_search) {
 		limit = len(sorted_list.locatables_in_search)

@@ -23,19 +23,19 @@ func (s LocatableInSearch) GetLocatable() Locatable {
 	return s.locatable_on_grid.locatable
 }
 
-type LocatableInSearchByDistance struct {
+type locatableInSearchByDistance struct {
 	locatables_in_search []LocatableInSearch
 }
 
-func (s LocatableInSearchByDistance) Len() int {
+func (s locatableInSearchByDistance) Len() int {
 	return len(s.locatables_in_search)
 }
 
-func (s LocatableInSearchByDistance) Swap(i, j int) {
+func (s locatableInSearchByDistance) Swap(i, j int) {
 	s.locatables_in_search[i], s.locatables_in_search[j] =
 		s.locatables_in_search[j], s.locatables_in_search[i]
 }
 
-func (s LocatableInSearchByDistance) Less(i, j int) bool {
+func (s locatableInSearchByDistance) Less(i, j int) bool {
 	return s.locatables_in_search[i].distance_miles < s.locatables_in_search[j].distance_miles
 }
