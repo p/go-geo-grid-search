@@ -28,7 +28,7 @@ func newGridTile(
 
 	grid_tile.width_miles = haversine(rad_lat, rad_lng-rad_lng_length/2,
 		rad_lat, rad_lng+rad_lng_length/2)
-	grid_tile.height_miles = R * math.Pi / float64(lat_tiles)
+	grid_tile.height_miles = r * math.Pi / float64(lat_tiles)
 	return grid_tile
 }
 

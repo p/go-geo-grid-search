@@ -5,7 +5,7 @@ import (
 )
 
 // Earth radius in miles
-const R = 3959
+const r = 3959
 
 func degreesToRadians(degrees float64) float64 {
 	return degrees * math.Pi / 180
@@ -19,7 +19,7 @@ func haversine(rad_lat1, rad_lng1, rad_lat2, rad_lng2 float64) float64 {
 	x := delta_lambda * math.Cos(phi_m)
 	y := delta_phi
 	hfo := x*x + y*y
-	return R * math.Sqrt(hfo)
+	return r * math.Sqrt(hfo)
 }
 
 func radLatToGrid(rad_lat float64, lat_tiles int) int {
