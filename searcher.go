@@ -6,7 +6,7 @@ import (
 )
 
 type Searcher struct {
-	locatable_map LocatableMap
+	locatable_map locatableMap
 
 	lat_tiles int
 	lng_tiles int
@@ -16,23 +16,23 @@ func NewSearcher(lat_tiles, lng_tiles int) Searcher {
 	searcher := Searcher{}
 	searcher.lat_tiles = lat_tiles
 	searcher.lng_tiles = lng_tiles
-	searcher.locatable_map = NewLocatableMap(lat_tiles, lng_tiles)
+	searcher.locatable_map = newLocatableMap(lat_tiles, lng_tiles)
 	return searcher
 }
 
 func (s Searcher) AddLocatable(locatable Locatable) {
-	locatable_on_grid := NewLocatableOnGrid(locatable, s.lat_tiles, s.lng_tiles)
+	locatable_on_grid := newLocatableOnGrid(locatable, s.lat_tiles, s.lng_tiles)
 	s.locatable_map.AddLocatableOnGrid(&locatable_on_grid)
 }
 
 type LocatableFilter func(Locatable) bool
 
 func (s Searcher) Search(filter *LocatableFilter, lat, lng float64, limit int) []LocatableInSearch {
-	rad_lat := DegreesToRadians(lat)
-	rad_lng := DegreesToRadians(lng)
-	start_grid_lat := RadLatToGrid(rad_lat, s.lat_tiles)
-	start_grid_lng := RadLngToGrid(rad_lng, s.lng_tiles)
-	start_tile := NewGridTile(rad_lat, rad_lng, s.lat_tiles, s.lng_tiles)
+	rad_lat := degreesToRadians(lat)
+	rad_lng := degreesToRadians(lng)
+	start_grid_lat := radLatToGrid(rad_lat, s.lat_tiles)
+	start_grid_lng := radLngToGrid(rad_lng, s.lng_tiles)
+	start_tile := newGridTile(rad_lat, rad_lng, s.lat_tiles, s.lng_tiles)
 	tile_delta_miles := math.Min(
 		start_tile.width_miles, start_tile.height_miles)
 
@@ -57,8 +57,8 @@ func (s Searcher) Search(filter *LocatableFilter, lat, lng float64, limit int) [
 		for _, grid_pos := range cells {
 			grid_lat := grid_pos.grid_lat
 			grid_lng := grid_pos.grid_lng
-			grid_lat = ClampGridLat(grid_lat, s.lat_tiles)
-			grid_lng = WrapGridLng(grid_lng, s.lng_tiles)
+			grid_lat = clampGridLat(grid_lat, s.lat_tiles)
+			grid_lng = wrapGridLng(grid_lng, s.lng_tiles)
 
 			// xxx encapsulation violation
 			tile := s.locatable_map.locatable_map[grid_pos.index]
@@ -72,7 +72,7 @@ func (s Searcher) Search(filter *LocatableFilter, lat, lng float64, limit int) [
 				}
 
 				local_locatable_on_grid := locatable_on_grid
-				locatable_in_search := NewLocatableInSearch(&local_locatable_on_grid, rad_lat, rad_lng)
+				locatable_in_search := newLocatableInSearch(&local_locatable_on_grid, rad_lat, rad_lng)
 				if locatable_in_search.distance_miles <= delta_miles {
 					current_list = append(current_list, locatable_in_search)
 				} else {
@@ -98,30 +98,30 @@ func (s Searcher) Search(filter *LocatableFilter, lat, lng float64, limit int) [
 	return locatables_in_search
 }
 
-func (s Searcher) cells_at_reach(grid_lat, grid_lng, reach int) []GridPos {
+func (s Searcher) cells_at_reach(grid_lat, grid_lng, reach int) []gridPos {
 	if reach == 0 {
-		cells := make([]GridPos, 1)
-		cells[0] = NewGridPos(grid_lat, grid_lng, s.lat_tiles, s.lng_tiles)
+		cells := make([]gridPos, 1)
+		cells[0] = newGridPos(grid_lat, grid_lng, s.lat_tiles, s.lng_tiles)
 		return cells
 	}
 
-	cells := make([]GridPos, 0)
+	cells := make([]gridPos, 0)
 	current_grid_lat := grid_lat - reach
 	current_grid_lng := grid_lng - reach
 	for current_grid_lat < grid_lat+reach {
-		cells = append(cells, NewGridPos(current_grid_lat, current_grid_lng, s.lat_tiles, s.lng_tiles))
+		cells = append(cells, newGridPos(current_grid_lat, current_grid_lng, s.lat_tiles, s.lng_tiles))
 		current_grid_lat += 1
 	}
 	for current_grid_lng < grid_lng+reach {
-		cells = append(cells, NewGridPos(current_grid_lat, current_grid_lng, s.lat_tiles, s.lng_tiles))
+		cells = append(cells, newGridPos(current_grid_lat, current_grid_lng, s.lat_tiles, s.lng_tiles))
 		current_grid_lng += 1
 	}
 	for current_grid_lat > grid_lat-reach {
-		cells = append(cells, NewGridPos(current_grid_lat, current_grid_lng, s.lat_tiles, s.lng_tiles))
+		cells = append(cells, newGridPos(current_grid_lat, current_grid_lng, s.lat_tiles, s.lng_tiles))
 		current_grid_lat -= 1
 	}
 	for current_grid_lng > grid_lng-reach {
-		cells = append(cells, NewGridPos(current_grid_lat, current_grid_lng, s.lat_tiles, s.lng_tiles))
+		cells = append(cells, newGridPos(current_grid_lat, current_grid_lng, s.lat_tiles, s.lng_tiles))
 		current_grid_lng -= 1
 	}
 	return cells

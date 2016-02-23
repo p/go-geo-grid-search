@@ -7,12 +7,12 @@ import (
 // Earth radius in miles
 const R = 3959
 
-func DegreesToRadians(degrees float64) float64 {
+func degreesToRadians(degrees float64) float64 {
 	return degrees * math.Pi / 180
 }
 
 // http://www.movable-type.co.uk/scripts/latlong.html
-func Haversine(rad_lat1, rad_lng1, rad_lat2, rad_lng2 float64) float64 {
+func haversine(rad_lat1, rad_lng1, rad_lat2, rad_lng2 float64) float64 {
 	delta_lambda := rad_lng2 - rad_lng1
 	delta_phi := rad_lat2 - rad_lat1
 	phi_m := (rad_lat1 + rad_lat2) / 2
@@ -22,15 +22,15 @@ func Haversine(rad_lat1, rad_lng1, rad_lat2, rad_lng2 float64) float64 {
 	return R * math.Sqrt(hfo)
 }
 
-func RadLatToGrid(rad_lat float64, lat_tiles int) int {
+func radLatToGrid(rad_lat float64, lat_tiles int) int {
 	return int((rad_lat + math.Pi/2) * float64(lat_tiles) / math.Pi)
 }
 
-func RadLngToGrid(rad_lng float64, lng_tiles int) int {
+func radLngToGrid(rad_lng float64, lng_tiles int) int {
 	return int((rad_lng + math.Pi) * float64(lng_tiles) / math.Pi / 2)
 }
 
-func ClampGridLat(grid_lat, lat_tiles int) int {
+func clampGridLat(grid_lat, lat_tiles int) int {
 	if grid_lat >= lat_tiles {
 		grid_lat -= 1
 	}
@@ -40,7 +40,7 @@ func ClampGridLat(grid_lat, lat_tiles int) int {
 	return grid_lat
 }
 
-func WrapGridLng(grid_lng, lng_tiles int) int {
+func wrapGridLng(grid_lng, lng_tiles int) int {
 	for grid_lng >= lng_tiles {
 		grid_lng -= lng_tiles
 	}

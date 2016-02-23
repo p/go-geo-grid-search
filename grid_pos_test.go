@@ -6,6 +6,6 @@ import (
 )
 
 func TestNewGridPos(t *testing.T) {
-	grid_pos := NewGridPos(4, 6, 10, 20)
+	grid_pos := newGridPos(4, 6, 10, 20)
 	assert.Equal(t, grid_pos.index, 64)
 }
