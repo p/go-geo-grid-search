@@ -11,7 +11,10 @@ and performs queries by iterating the grid tiles in a spiral fashion.
 
 ## Documentation
 
-Available on [godoc.org](https://godoc.org/github.com/p/go-geo-grid-search).
+Documentation is available on [godoc.org](https://godoc.org/github.com/p/go-geo-grid-search).
+
+Here is an [example](https://github.com/p/go-geo-grid-search/examples/simple.go)
+showing how to use ggsearch.
 
 ## Performance
 

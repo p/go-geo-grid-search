@@ -7,6 +7,11 @@ The distinguishing feature of ggsearch is that it does not require a
 bounding box for querying. ggsearch builds a sparse grid index of the places
 and performs queries by iterating the grid tiles in a spiral fashion.
 
+Example
+
+Here is an example showing how to use ggsearch:
+https://github.com/p/go-geo-grid-search/examples/simple.go
+
 Performance
 
 ggsearch was built for speed. On a t2.micro AWS instance a Web service
