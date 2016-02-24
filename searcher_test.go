@@ -13,7 +13,7 @@ func TestSearchTrivial(t *testing.T) {
 
 	results := searcher.Search(nil, 0, 0, 10)
 	assert.Equal(t, len(results), 1)
-	assert.Equal(t, results[0].GetLocatable().(SampleLocatable), locatable)
+	assert.Equal(t, results[0].Locatable().(SampleLocatable), locatable)
 }
 
 func TestSearchTwoEntries(t *testing.T) {
@@ -26,6 +26,6 @@ func TestSearchTwoEntries(t *testing.T) {
 
 	results := searcher.Search(nil, 0, 0, 10)
 	assert.Equal(t, len(results), 2)
-	assert.Equal(t, results[0].GetLocatable().(SampleLocatable), locatable1)
-	assert.Equal(t, results[1].GetLocatable().(SampleLocatable), locatable2)
+	assert.Equal(t, results[0].Locatable().(SampleLocatable), locatable1)
+	assert.Equal(t, results[1].Locatable().(SampleLocatable), locatable2)
 }

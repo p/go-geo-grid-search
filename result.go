@@ -1,5 +1,9 @@
 package ggsearch
 
+/*
+Search result, provides access to the original Locatable object
+and distance from query point to this object.
+*/
 type Result struct {
 	locatable_on_grid *locatableOnGrid
 
@@ -19,8 +23,19 @@ func newLocatableInSearch(locatable_on_grid *locatableOnGrid, query_rad_lat, que
 	return locatable_in_search
 }
 
-func (s Result) GetLocatable() Locatable {
+/*
+Returns the Locatable object for this search result.
+*/
+func (s Result) Locatable() Locatable {
 	return s.locatable_on_grid.locatable
+}
+
+/*
+Returns the distance, in miles, from the Locatable object in this search
+result to the query point.
+*/
+func (s Result) Distance() float64 {
+	return s.distance_miles
 }
 
 type locatableInSearchByDistance struct {
