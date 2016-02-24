@@ -2,29 +2,20 @@ package ggsearch
 
 import (
 	"github.com/stretchr/testify/assert"
-	check "gopkg.in/check.v1"
 	"math"
 	"testing"
 )
 
-// Hook up gocheck into the "go test" runner.
-func TestGeoUtils(t *testing.T) { check.TestingT(t) }
-
-type GeoUtilsSuite struct {
+func TestDegreesToRadiansZero(t *testing.T) {
+	assert.Equal(t, degreesToRadians(0), 0.0)
 }
 
-var _ = check.Suite(&GeoUtilsSuite{})
-
-func (s *GeoUtilsSuite) TestDegreesToRadiansZero(c *check.C) {
-	c.Assert(degreesToRadians(0), check.Equals, 0.0)
+func TestDegreesToRadiansHalfPi(t *testing.T) {
+	assert.Equal(t, degreesToRadians(90), math.Pi/2)
 }
 
-func (s *GeoUtilsSuite) TestDegreesToRadiansHalfPi(c *check.C) {
-	c.Assert(degreesToRadians(90), check.Equals, math.Pi/2)
-}
-
-func (s *GeoUtilsSuite) TestDegreesToRadiansPi(c *check.C) {
-	c.Assert(degreesToRadians(180), check.Equals, math.Pi)
+func TestDegreesToRadiansPi(t *testing.T) {
+	assert.Equal(t, degreesToRadians(180), math.Pi)
 }
 
 func TestRadLatToGrid(t *testing.T) {
@@ -41,18 +32,18 @@ func TestRadLngToGrid(t *testing.T) {
 	assert.Equal(t, radLngToGrid(-math.Pi+0.1, 10), 0)
 }
 
-func (s *GeoUtilsSuite) TestClampGridLat(c *check.C) {
-	c.Assert(clampGridLat(10, 11), check.Equals, 10)
-	c.Assert(clampGridLat(11, 11), check.Equals, 10)
-	c.Assert(clampGridLat(0, 11), check.Equals, 0)
-	c.Assert(clampGridLat(-1, 11), check.Equals, 0)
+func TestClampGridLat(t *testing.T) {
+	assert.Equal(t, clampGridLat(10, 11), 10)
+	assert.Equal(t, clampGridLat(11, 11), 10)
+	assert.Equal(t, clampGridLat(0, 11), 0)
+	assert.Equal(t, clampGridLat(-1, 11), 0)
 }
 
-func (s *GeoUtilsSuite) TestWrapGridLng(c *check.C) {
-	c.Assert(wrapGridLng(10, 11), check.Equals, 10)
-	c.Assert(wrapGridLng(11, 11), check.Equals, 0)
-	c.Assert(wrapGridLng(0, 11), check.Equals, 0)
-	c.Assert(wrapGridLng(-1, 11), check.Equals, 10)
+func TestWrapGridLng(t *testing.T) {
+	assert.Equal(t, wrapGridLng(10, 11), 10)
+	assert.Equal(t, wrapGridLng(11, 11), 0)
+	assert.Equal(t, wrapGridLng(0, 11), 0)
+	assert.Equal(t, wrapGridLng(-1, 11), 10)
 }
 
 func TestHaversine(t *testing.T) {
