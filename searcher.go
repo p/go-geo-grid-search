@@ -5,6 +5,15 @@ import (
 	"sort"
 )
 
+/*
+Type of filtering callbacks.
+*/
+type Filter func(Locatable) bool
+
+/*
+Searcher maintains the grid index over Locatables in a data set and
+performs K-closest queries.
+*/
 type Searcher struct {
 	locatable_map locatableMap
 
@@ -12,6 +21,10 @@ type Searcher struct {
 	lng_tiles int
 }
 
+/*
+Creates a new Searcher with the specified number of horizontal and
+vertical tiles.
+*/
 func NewSearcher(lat_tiles, lng_tiles int) Searcher {
 	searcher := Searcher{}
 	searcher.lat_tiles = lat_tiles
@@ -20,13 +33,21 @@ func NewSearcher(lat_tiles, lng_tiles int) Searcher {
 	return searcher
 }
 
+/*
+Adds an object satisfying the Locatable interface to this Searcher.
+*/
 func (s Searcher) AddLocatable(locatable Locatable) {
 	locatable_on_grid := newLocatableOnGrid(locatable, s.lat_tiles, s.lng_tiles)
 	s.locatable_map.AddLocatableOnGrid(&locatable_on_grid)
 }
 
-type Filter func(Locatable) bool
-
+/*
+Performs a K-closest search around the point identified by lat and lng
+which must be given in degrees.
+Limit specifies how many objects to return.
+Filter is optional and if given, will be invoked for each object to
+determine if the object should be in the result set.
+*/
 func (s Searcher) Search(filter *Filter, lat, lng float64, limit int) []LocatableInSearch {
 	rad_lat := degreesToRadians(lat)
 	rad_lng := degreesToRadians(lng)
