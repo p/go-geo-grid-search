@@ -2,17 +2,8 @@ package ggsearch
 
 import (
 	"github.com/stretchr/testify/assert"
-	. "gopkg.in/check.v1"
 	"testing"
 )
-
-// Hook up gocheck into the "go test" runner.
-func TestLocatableOnGrid(t *testing.T) { TestingT(t) }
-
-type LocatableOnGridSuite struct {
-}
-
-var _ = Suite(&LocatableOnGridSuite{})
 
 func TestGridIndexCalculation(t *testing.T) {
 	locatable := SampleLocatable{"", 50, -70}
