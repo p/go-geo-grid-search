@@ -48,7 +48,7 @@ Limit specifies how many objects to return.
 Filter is optional and if given, will be invoked for each object to
 determine if the object should be in the result set.
 */
-func (s Searcher) Search(filter *Filter, lat, lng float64, limit int) []LocatableInSearch {
+func (s Searcher) Search(filter *Filter, lat, lng float64, limit int) []Result {
 	rad_lat := degreesToRadians(lat)
 	rad_lng := degreesToRadians(lng)
 	start_grid_lat := radLatToGrid(rad_lat, s.lat_tiles)
@@ -57,14 +57,14 @@ func (s Searcher) Search(filter *Filter, lat, lng float64, limit int) []Locatabl
 	tile_delta_miles := math.Min(
 		start_tile.width_miles, start_tile.height_miles)
 
-	current_list := make([]LocatableInSearch, 0)
-	next_list := make([]LocatableInSearch, 0)
+	current_list := make([]Result, 0)
+	next_list := make([]Result, 0)
 
 	reach := 0
 	for reach < 5 {
 		delta_miles := float64(reach) * tile_delta_miles
 
-		new_next_list := make([]LocatableInSearch, 0)
+		new_next_list := make([]Result, 0)
 		for _, locatable_in_search := range next_list {
 			if locatable_in_search.distance_miles <= delta_miles {
 				current_list = append(current_list, locatable_in_search)

@@ -1,6 +1,6 @@
 package ggsearch
 
-type LocatableInSearch struct {
+type Result struct {
 	locatable_on_grid *locatableOnGrid
 
 	query_rad_lat  float64
@@ -8,8 +8,8 @@ type LocatableInSearch struct {
 	distance_miles float64
 }
 
-func newLocatableInSearch(locatable_on_grid *locatableOnGrid, query_rad_lat, query_rad_lng float64) LocatableInSearch {
-	locatable_in_search := LocatableInSearch{}
+func newLocatableInSearch(locatable_on_grid *locatableOnGrid, query_rad_lat, query_rad_lng float64) Result {
+	locatable_in_search := Result{}
 	locatable_in_search.locatable_on_grid = locatable_on_grid
 	locatable_in_search.query_rad_lat = query_rad_lat
 	locatable_in_search.query_rad_lng = query_rad_lng
@@ -19,12 +19,12 @@ func newLocatableInSearch(locatable_on_grid *locatableOnGrid, query_rad_lat, que
 	return locatable_in_search
 }
 
-func (s LocatableInSearch) GetLocatable() Locatable {
+func (s Result) GetLocatable() Locatable {
 	return s.locatable_on_grid.locatable
 }
 
 type locatableInSearchByDistance struct {
-	locatables_in_search []LocatableInSearch
+	locatables_in_search []Result
 }
 
 func (s locatableInSearchByDistance) Len() int {
