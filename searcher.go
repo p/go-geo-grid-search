@@ -25,9 +25,9 @@ func (s Searcher) AddLocatable(locatable Locatable) {
 	s.locatable_map.AddLocatableOnGrid(&locatable_on_grid)
 }
 
-type LocatableFilter func(Locatable) bool
+type Filter func(Locatable) bool
 
-func (s Searcher) Search(filter *LocatableFilter, lat, lng float64, limit int) []LocatableInSearch {
+func (s Searcher) Search(filter *Filter, lat, lng float64, limit int) []LocatableInSearch {
 	rad_lat := degreesToRadians(lat)
 	rad_lng := degreesToRadians(lng)
 	start_grid_lat := radLatToGrid(rad_lat, s.lat_tiles)
