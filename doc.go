@@ -10,7 +10,7 @@ and performs queries by iterating the grid tiles in a spiral fashion.
 Example
 
 Here is an example showing how to use ggsearch:
-https://github.com/p/go-geo-grid-search/examples/simple.go
+https://github.com/p/go-geo-grid-search/tree/master/examples/simple.go
 
 Performance
 
