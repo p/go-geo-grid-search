@@ -1,11 +1,17 @@
 # Go Geo Grid Search
 
+[![GoDoc](https://godoc.org/github.com/p/go-geo-grid-search?status.svg)](https://godoc.org/github.com/p/go-geo-grid-search)
+
 ggsearch is a package for performing fast K-closest lookups of places
 on Earth.
 
 The distinguishing feature of ggsearch is that it does not require a
 bounding box for querying. ggsearch builds a sparse grid index of the places
 and performs queries by iterating the grid tiles in a spiral fashion.
+
+## Documentation
+
+Available on [godoc.org](https://godoc.org/github.com/p/go-geo-grid-search).
 
 ## Performance
 
